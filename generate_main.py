@@ -91,7 +91,7 @@ def generate(classes):
 
     # Lọc các lớp đã tồn tại và tạo prompt
     with open("previous_prompt.txt", "a", encoding="utf-8") as prompt_file:
-        for cls in classes[:1]:
+        for cls in classes:
             cls = cls.strip()
             if cls not in existed_classes:
                 class_prompt = prompt
