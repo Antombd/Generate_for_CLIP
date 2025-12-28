@@ -85,7 +85,7 @@ def extract_sentences(response_text):
 
 def generate(classes):
 
-    prompt = """You're an expert writing objective and general descriptions for things in English. Write short sentence less than 40 words to answer each of these questions in english. exactly 10 sentences for each question. 1 sentence on 1 line. the english name of the main subject must appear in every sentence. you must translate the name to english. do not reiterate the questions. do not provide sources."""
+    prompt = """Forget previous prompts. You're an expert writing objective and general descriptions for things in English. Write short sentence less than 40 words to answer each of these questions in english. Exactly 10 sentences for each question. 1 sentence on 1 line. The english name of the main subject must appear in every sentence. You must translate the name to english. Do not reiterate the questions. Do not provide sources."""
 
     # Load các lớp đã tồn tại từ file JSON
     with open("class_dict.json", "r", encoding="utf-8") as json_file:
