@@ -6,7 +6,7 @@ from google import genai
 from google.genai import types
 import json
 from google.colab import userdata
-
+import re
 
 from api_key import API_KEY
 # API_KEY = userdata.get('API_KEY')
@@ -67,11 +67,18 @@ City lights glow beneath a descending airliner during a night approach.
 This wide-body airliner is designed to transport over three hundred travelers safely.
 """
 
+import re
 def extract_sentences(response_text):
     sentences = []
-    lines = response_text.split('\n')
+    lines = re.split(r'\.\n|\. ', response_text)
     for line in lines:
-        line = line.strip()
+        line = line.strip() + '.'
+        
+        if '?' in line or 'How' in line or 'Describe' in line or 'What' in line or 'description' in line or 'A caption of an image of a' in line:
+            continue
+
+        line = re.sub(r'^[\d]+\/|^[\d]+\.|^[IVXLMCD]+\.|^[a-zA-Z]\.\s*', '', line).strip()
+
         if line:
             sentences.append(line)
     return sentences
@@ -157,5 +164,5 @@ def generate(classes):
     json_file.close()
 
 classes = []
-classes = ['mèo', 'airliner', 'albatross']
+classes = ['cat', 'dog', 'pizza', 'people', 'lion', 'chim', 'gà', 'food']
 generate(classes)
